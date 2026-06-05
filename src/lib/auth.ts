@@ -5,8 +5,10 @@ import GitHub from "next-auth/providers/github";
 import bcrypt from "bcryptjs";
 import { connectDB } from "@/lib/mongodb";
 import User from "@/models/User";
+import { authConfig } from "./auth.config";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  ...authConfig,
   providers: [
     Google({
       clientId: process.env.AUTH_GOOGLE_ID,
@@ -61,17 +63,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
 
-  pages: {
-    signIn: "/login",
-    newUser: "/signup",
-  },
-
-  session: {
-    strategy: "jwt",
-    maxAge: 30 * 24 * 60 * 60, // 30 days
-  },
-
   callbacks: {
+    ...authConfig.callbacks,
     async signIn({ user, account }) {
       if (account?.provider === "google" || account?.provider === "github") {
         if (!user.email) {
@@ -140,3 +133,4 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     },
   },
 });
+
