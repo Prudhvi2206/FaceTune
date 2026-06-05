@@ -1,5 +1,7 @@
 # FaceTune 🎵
 
+**Live Application**: [https://face-tune.vercel.app](https://face-tune.vercel.app)
+
 [![Next.js](https://img.shields.io/badge/Next.js-16.2.7-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19.2.7-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.3.0-38B2AC?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
@@ -7,6 +9,7 @@
 [![Auth.js](https://img.shields.io/badge/Auth.js-v5.0-FF4500?style=for-the-badge&logo=nextauth&logoColor=white)](https://authjs.dev/)
 
 FaceTune is an interactive, AI-powered music companion that captures real-time facial expressions through your webcam, detects your dominant emotion, and recommends customized soundtracks matching your mood. Designed with a premium dark glassmorphic UI, it supports custom mood song bindings, listening analytics, and secure authorization.
+
 
 ---
 
