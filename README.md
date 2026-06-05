@@ -21,6 +21,19 @@ FaceTune is an interactive, AI-powered music companion that captures real-time f
 
 ---
 
+## 🛠️ Technology Stack
+
+- **Framework**: Next.js v16.2.7 (App Router, Turbopack)
+- **Frontend Library**: React v19.2.7
+- **Styling**: Tailwind CSS v4.3.0 with PostCSS
+- **Animations**: Framer Motion v12.4.0 (for smooth UI interactions & drag effects)
+- **Database**: MongoDB Atlas via Mongoose v9.6.3 (ODM)
+- **State Management**: Zustand v5.0.14 (audio player store)
+- **Computer Vision**: Google @mediapipe/tasks-vision v0.10.35 (Face Landmarker model)
+- **Analytics Visuals**: Recharts v3.8.1 (responsive mood and trend charts)
+
+---
+
 ## 🌐 System Architecture
 
 FaceTune runs on a classic client-server model:
@@ -56,6 +69,41 @@ graph LR
     API_Custom --> DB
     API_Music --> Audius
     API_Music --> YouTube
+```
+
+---
+
+## 🗄️ Database Models
+
+FaceTune structures its data using Mongoose schemas:
+
+- **User**: Handles user registration, hashed credentials, and avatar parameters.
+- **EmotionHistory**: Logs detected emotions, confidence levels, and timestamp entries for user history.
+- **CustomMoodTrack**: Stores personalized song associations mapped by the user to specific emotions.
+- **Favorite**: Keeps track of liked/saved items mapped for quick access.
+- **ListeningHistory**: Logs details of tracks played by the user.
+
+---
+
+## 📁 Repository Structure
+
+```
+FaceTune/
+├── public/
+│   └── models/
+│       └── face_landmarker.task  # MediaPipe Vision model file
+├── src/
+│   ├── app/                      # App Router folders & pages
+│   │   ├── (auth)/               # Registration & Login pages
+│   │   ├── (dashboard)/          # Dashboard pages (Home, Discover, Analytics, etc.)
+│   │   ├── api/                  # Backend Next.js API Routes
+│   │   └── globals.css           # Styling rules & custom classes
+│   ├── components/               # Header, Sidebar, and MusicPlayer elements
+│   ├── hooks/                    # MediaPipe hook implementation
+│   ├── lib/                      # YouTube API, Audius API, DB clients, and classifiers
+│   ├── models/                   # Mongoose DB schema definitions
+│   └── stores/                   # Zustand stores for player state
+└── .env.example                  # Environment Variables Template
 ```
 
 ---
