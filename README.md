@@ -105,7 +105,9 @@ FaceTune/
 │   ├── hooks/                    # MediaPipe hook implementation
 │   ├── lib/                      # YouTube API, Audius API, DB clients, and classifiers
 │   ├── models/                   # Mongoose DB schema definitions
-│   └── stores/                   # Zustand stores for player state
+│   ├── providers/                # React context providers (Emotion, MusicPlayer)
+│   ├── stores/                   # Zustand stores for player state
+│   └── types/                    # TypeScript interfaces and definitions
 └── .env.example                  # Environment Variables Template
 ```
 
