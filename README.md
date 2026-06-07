@@ -85,7 +85,6 @@ FaceTune structures its data using Mongoose schemas:
 - **EmotionHistory**: Logs detected emotions, confidence levels, and timestamp entries for user history.
 - **CustomMoodTrack**: Stores personalized song associations mapped by the user to specific emotions.
 - **Favorite**: Keeps track of liked/saved items mapped for quick access.
-- **ListeningHistory**: Logs details of tracks played by the user.
 
 ---
 
