@@ -42,8 +42,16 @@ function DiscoverContent() {
   // Sync state if URL query param changes
   useEffect(() => {
     if (initialQuery) {
-      setSearchQuery(initialQuery);
-      setSelectedGenre(null);
+      let active = true;
+      setTimeout(() => {
+        if (active) {
+          setSearchQuery(initialQuery);
+          setSelectedGenre(null);
+        }
+      }, 0);
+      return () => {
+        active = false;
+      };
     }
   }, [initialQuery]);
 

@@ -14,7 +14,15 @@ export function Header() {
   const router = useRouter();
 
   useEffect(() => {
-    setMounted(true);
+    let active = true;
+    setTimeout(() => {
+      if (active) {
+        setMounted(true);
+      }
+    }, 0);
+    return () => {
+      active = false;
+    };
   }, []);
 
   const handleSearchSubmit = (e: React.FormEvent) => {

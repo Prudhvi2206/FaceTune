@@ -1,19 +1,16 @@
 "use client";
 
-import React, { createContext, useContext, useRef, useCallback, useEffect } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { useStore } from "zustand";
 import { createPlayerStore, type PlayerStore } from "@/stores/playerStore";
 
 const MusicPlayerContext = createContext<ReturnType<typeof createPlayerStore> | null>(null);
 
 export function MusicPlayerProvider({ children }: { children: React.ReactNode }) {
-  const storeRef = useRef<ReturnType<typeof createPlayerStore>>(null);
-  if (storeRef.current === null) {
-    storeRef.current = createPlayerStore();
-  }
+  const [store] = useState(() => createPlayerStore());
 
   return (
-    <MusicPlayerContext.Provider value={storeRef.current}>
+    <MusicPlayerContext.Provider value={store}>
       {children}
     </MusicPlayerContext.Provider>
   );

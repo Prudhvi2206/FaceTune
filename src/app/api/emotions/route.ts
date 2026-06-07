@@ -72,3 +72,26 @@ export async function GET(req: NextRequest) {
     );
   }
 }
+
+export async function DELETE(req: NextRequest) {
+  const session = await auth();
+  if (!session?.user) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  try {
+    await connectDB();
+
+    const result = await EmotionHistory.deleteMany({
+      userId: (session.user as unknown as Record<string, string>).id,
+    });
+
+    return NextResponse.json({ success: true, deletedCount: result.deletedCount });
+  } catch (error) {
+    console.error("Delete emotion history error:", error);
+    return NextResponse.json(
+      { error: "Failed to delete emotion history" },
+      { status: 500 }
+    );
+  }
+}

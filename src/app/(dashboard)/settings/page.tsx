@@ -6,6 +6,29 @@ import { motion } from "framer-motion";
 import { Settings as SettingsIcon, Sun, Moon, Camera, Music, Shield, User, Bell } from "lucide-react";
 import { toast } from "sonner";
 
+function ToggleSwitch({
+  enabled,
+  onToggle,
+}: {
+  enabled: boolean;
+  onToggle: () => void;
+}) {
+  return (
+    <button
+      onClick={onToggle}
+      className={`relative w-11 h-6 rounded-full transition-colors duration-200 ${
+        enabled ? "bg-primary" : "bg-muted"
+      }`}
+    >
+      <div
+        className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform duration-200 ${
+          enabled ? "translate-x-[22px]" : "translate-x-0.5"
+        }`}
+      />
+    </button>
+  );
+}
+
 export default function SettingsPage() {
   const { theme, setTheme } = useTheme();
   const [webcamEnabled, setWebcamEnabled] = useState(true);
@@ -20,27 +43,6 @@ export default function SettingsPage() {
     setter(!value);
     toast.success(`${label} ${!value ? "enabled" : "disabled"}`);
   };
-
-  const ToggleSwitch = ({
-    enabled,
-    onToggle,
-  }: {
-    enabled: boolean;
-    onToggle: () => void;
-  }) => (
-    <button
-      onClick={onToggle}
-      className={`relative w-11 h-6 rounded-full transition-colors duration-200 ${
-        enabled ? "bg-primary" : "bg-muted"
-      }`}
-    >
-      <div
-        className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform duration-200 ${
-          enabled ? "translate-x-[22px]" : "translate-x-0.5"
-        }`}
-      />
-    </button>
-  );
 
   const settingsSections = [
     {

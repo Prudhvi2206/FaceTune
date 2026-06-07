@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState, useCallback, useRef, useEffect } from "react";
 import { useSession } from "next-auth/react";
+import { toast } from "sonner";
 import type { EmotionType, EmotionResult } from "@/types/emotion";
 
 interface EmotionContextType {
@@ -79,9 +80,28 @@ export function EmotionProvider({ children }: { children: React.ReactNode }) {
     }
   }, [status]);
 
-  const clearHistory = useCallback(() => {
+  const clearHistory = useCallback(async () => {
     setEmotionHistory([]);
-  }, []);
+    lastEmotionRef.current = null;
+
+    if (status === "authenticated") {
+      try {
+        const res = await fetch("/api/emotions", {
+          method: "DELETE",
+        });
+        if (res.ok) {
+          toast.success("Mood history cleared from database");
+        } else {
+          toast.error("Failed to clear database logs");
+        }
+      } catch (err) {
+        console.error("Failed to delete emotion history:", err);
+        toast.error("An error occurred while clearing history");
+      }
+    } else {
+      toast.success("Local mood history cleared");
+    }
+  }, [status]);
 
   return (
     <EmotionContext.Provider
