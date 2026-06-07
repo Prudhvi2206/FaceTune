@@ -108,7 +108,6 @@ FaceTune/
 │   ├── providers/                # React context providers (Emotion, MusicPlayer)
 │   ├── stores/                   # Zustand stores for player state
 │   └── types/                    # TypeScript interfaces and definitions
-└── .env.example                  # Environment Variables Template
 ```
 
 ---
@@ -121,7 +120,7 @@ npm install
 ```
 
 ### 2. Configure Environment Variables
-Copy `.env.example` to `.env.local` and add your database/OAuth secret configurations:
+Create a `.env.local` file in the root directory and add your database/OAuth secret configurations:
 ```properties
 MONGODB_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/facetune
 AUTH_SECRET=your_nextauth_auth_secret_string
