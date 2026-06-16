@@ -10,9 +10,10 @@ export default auth((req) => {
 
   // Public routes
   const publicRoutes = ["/", "/login", "/signup", "/forgot-password"];
-  const isPublicRoute = publicRoutes.some(
-    (route) => pathname === route || pathname.startsWith("/api/auth")
-  );
+  const isPublicRoute =
+    publicRoutes.some((route) => pathname === route) ||
+    pathname.startsWith("/api/auth") ||
+    pathname.startsWith("/api/user");
 
   if (isPublicRoute) {
     // Redirect logged-in users away from auth pages
